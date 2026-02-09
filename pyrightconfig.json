@@ -1,0 +1,13 @@
+{
+    "extraPaths": ["./src"],
+    "exclude": [
+        "**/node_modules",
+        "**/__pycache__",
+        "dist",
+        "dist2",
+        "build",
+        "*.dist",
+        "*.build",
+        "**/.git"
+    ]
+}
