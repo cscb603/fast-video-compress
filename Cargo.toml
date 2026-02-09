@@ -1,0 +1,41 @@
+[package]
+name = "fast-video-compress-rs"
+version = "0.1.0"
+edition = "2021"
+description = "星TAP 极简视频压缩"
+
+[package.metadata.bundle]
+name = "星TAP视频压缩"
+identifier = "com.xtap.video-compress"
+icon = ["视频压缩图标.icns"]
+category = "Video"
+short_description = "极简高效的视频压缩工具"
+long_description = """
+基于 Rust 和 FFmpeg 8.0.1 开发的极简视频压缩工具。
+支持智能缩放、硬件加速、批量处理。
+"""
+
+[dependencies]
+tokio = { version = "1.0", features = ["full"] }
+clap = { version = "4.0", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+walkdir = "2.3"
+anyhow = "1.0"
+indicatif = "0.17"
+futures = "0.3"
+eframe = "0.28" # 极简 Rust UI 框架
+rfd = "0.14"    # 文件对话框
+confy = "0.6"   # 配置记忆
+image = "0.25"  # 图像处理（用于设置图标）
+
+[profile.release]
+opt-level = 3           # 最大性能优化
+lto = true              # 开启全链接优化 (Link Time Optimization)
+codegen-units = 1       # 减少并行编译单元，增加优化机会
+panic = 'abort'         # 发生 panic 时直接退出，减少二进制体积
+strip = true            # 自动去除符号表和调试信息 (等同于 unix 下的 strip 命令)
+overflow-checks = false # 关闭溢出检查，进一步提升性能
+
+[build-dependencies]
+winres = "0.1"
