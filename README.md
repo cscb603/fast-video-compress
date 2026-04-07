@@ -1,4 +1,4 @@
-# 🚀 星TAP 极简视频压缩 V3 | StarTAP Simple Video Compressor V3
+# 🚀 星TAP 极简视频压缩 V4 | StarTAP Simple Video Compressor V4
 
 ![主界面](视频压缩界面v3-1.png)
 
@@ -40,7 +40,7 @@
 | 💻 **CLI 命令行 + JSON 输出** | 完美支持 OpenClaw 小龙虾、各种 AI 大模型工具调用 |
 | 🎯 **5 档预设**               | 一键选择，不用调参数                             |
 | 📱 **竖屏视频智能适配**       | 抖音/小红书视频，自动限制宽度，不变形            |
-| ⚡ **NVIDIA 硬件加速**        | 有 N 卡？速度飞起！                              |
+| ⚡ **硬件加速**                | VideoToolbox (Mac)、NVENC (Windows)，速度飞起！ |
 | 🧠 **智能 FFmpeg 检测**       | 自动找 FFmpeg，不用配置                          |
 | 📂 **批量处理**               | 一次拖入 100 个视频，自动排队压缩                |
 
@@ -58,11 +58,27 @@
 
 ---
 
+## 📥 下载地址 / Download Links
+
+### macOS 版本 / macOS Version
+
+| 版本 | 文件 | 说明 |
+|------|------|------|
+| 🔋 **便携版** | [星TAP视频压缩mac_V4_portable.zip](星TAP视频压缩mac_V4_portable.zip) | 自带 FFmpeg 7.1.1，零配置即用 |
+| 📦 **标准版** | [星TAP视频压缩mac_V4.zip](星TAP视频压缩mac_V4.zip) | 需要系统已安装 FFmpeg |
+| 🧪 **测试版** | [星TAP视频压缩_v4.0.0_Mac.zip](星TAP视频压缩_v4.0.0_Mac.zip) | 最新测试版，带打包脚本 |
+
+### 源码 / Source Code
+
+- [星TAP视频压缩_v4.0.0_纯代码.zip](星TAP视频压缩_v4.0.0_纯代码.zip) - 完整源代码
+
+---
+
 ### 怎么用？ / How to use
 
 #### 🖱️ GUI 模式（推荐给普通用户）
 
-1. **打开程序**：双击 `星TAP视频压缩v3.exe`
+1. **打开程序**：双击 `视频高速压缩.app`
 2. **添加视频**：
    - 点击「➕ 添加文件」选择视频
    - 点击「📂 添加文件夹」选择整个文件夹
@@ -74,16 +90,16 @@
 
 ```bash
 # 快速压缩一个视频
-fast-video-cli.exe --input 视频.mp4 --output-dir 输出文件夹
+./fast-video-compress-cli --input 视频.mp4 --output-dir 输出文件夹
 
 # 临时分享模式（极致压缩）
-fast-video-cli.exe --input 视频.mp4 --quick-share --max-height 1080 --quality 32 --speed-preset 10
+./fast-video-compress-cli --input 视频.mp4 --quick-share --max-height 1080 --quality 32 --speed-preset 10
 
 # 压缩整个文件夹
-fast-video-cli.exe --input 视频文件夹 --output-dir 输出文件夹
+./fast-video-compress-cli --input 视频文件夹 --output-dir 输出文件夹
 
 # JSON 输出（AI 调用）
-fast-video-cli.exe --input 视频.mp4 --json
+./fast-video-compress-cli --input 视频.mp4 --json
 ```
 
 ---
@@ -94,9 +110,9 @@ fast-video-cli.exe --input 视频.mp4 --json
 `_s` 后缀。
 
 **Q: 为什么有些视频无法播放？** A: AV1 格式需要新设备（Win11 22H2+/macOS
-13+）或 VLC 播放器（下载地址：<https://www.videolan.org/vlc/）。>
+13+）或 VLC 播放器（下载地址：<https://www.videolan.org/vlc/>）。
 
-**Q: 压缩速度太慢怎么办？** A: 如果你有 NVIDIA 显卡，选 NVENC 编码器！极快！
+**Q: 压缩速度太慢怎么办？** A: Mac 用户默认使用 VideoToolbox 硬件加速，Windows 用户如果有 NVIDIA 显卡，选 NVENC 编码器！极快！
 
 **Q: 竖屏视频会怎么处理？**
 A: 程序会自动判断！竖屏视频会限制宽度而不是高度，保持画面比例！
@@ -149,7 +165,7 @@ makes your videos **smaller, easier to share, and space-saving**!
 | 💻 **CLI + JSON Output**               | Perfect for OpenClaw and various AI LLM tool calling   |
 | 🎯 **5 Preset Profiles**               | One-click selection, no parameter tuning               |
 | 📱 **Vertical Video Smart Adaptation** | TikTok/RedNote videos, auto limit width, no distortion |
-| ⚡ **NVIDIA Hardware Acceleration**    | Have an NVIDIA GPU? Blazing fast!                      |
+| ⚡ **Hardware Acceleration**           | VideoToolbox (Mac), NVENC (Windows), blazing fast!    |
 | 🧠 **Smart FFmpeg Detection**          | Auto finds FFmpeg, no configuration needed             |
 | 📂 **Batch Processing**                | Drag in 100 videos at once, auto queue compression     |
 
@@ -167,53 +183,28 @@ makes your videos **smaller, easier to share, and space-saving**!
 
 ---
 
-### How to use
+## 📦 File Description
 
-#### 🖱️ GUI Mode (Recommended for regular users)
+### macOS Files
 
-1. **Open the program**: Double-click `星TAP视频压缩v3.exe`
-2. **Add videos**:
-   - Click "➕ Add Files" to select videos
-   - Click "📂 Add Folder" to select an entire folder
-   - Just drag and drop videos or folders onto the interface!
-3. **Select preset**: Recommend "1080p (Recommended · Balanced)"
-4. **Start compression**: Click "🚀 Start Batch Compression"
-
-#### 💻 CLI Mode (For technical users and AI tools)
-
-```bash
-# Quick compress one video
-fast-video-cli.exe --input video.mp4 --output-dir ./output
-
-# Quick share mode (extreme compression)
-fast-video-cli.exe --input video.mp4 --quick-share --max-height 1080 --quality 32 --speed-preset 10
-
-# Compress entire folder
-fast-video-cli.exe --input ./videos --output-dir ./output
-
-# JSON output (for AI integration)
-fast-video-cli.exe --input video.mp4 --json
-```
+- `星TAP视频压缩mac_V4_portable.zip` - 便携版（自带 FFmpeg）/ Portable Version (with FFmpeg)
+- `星TAP视频压缩mac_V4.zip` - 标准版（使用系统 FFmpeg）/ Standard Version (uses system FFmpeg)
+- `星TAP视频压缩_v4.0.0_Mac.zip` - 测试版 / Beta Version
+- `星TAP视频压缩_v4.0.0_纯代码.zip` - 完整源代码 / Full Source Code
+- `build_mac_app.sh` - Mac 应用打包脚本 / Mac App Build Script
 
 ---
 
-## 📦 File Description
-
-- `星TAP视频压缩v3.exe` - GUI 版本 / GUI Version
-- `fast-video-cli.exe` - CLI 版本 / CLI Version
-- `ffmpeg.exe` - FFmpeg 编码器 / FFmpeg Encoder
-- `ffprobe.exe` - FFprobe 视频信息检测工具 / FFprobe Video Info Tool
-
 ## ⚙️ System Requirements
 
-- Windows 10 或更高版本 / Windows 10 or later
-- NVIDIA 显卡（使用 NVENC 需要）/ NVIDIA GPU (for NVENC)
+- macOS 10.15 或更高版本 / macOS 10.15 or later
+- FFmpeg（便携版已包含）/ FFmpeg (included in portable version)
 
 ---
 
 ## 🎉 开始使用吧！/ Get Started
 
-双击 **「星TAP视频压缩v3.exe」** 开始你的视频压缩之旅！
+下载解压后，双击 **「视频高速压缩.app」** 开始你的视频压缩之旅！
 
 ---
 
