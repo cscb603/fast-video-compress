@@ -1,0 +1,17 @@
+target/
+**/*.app
+*.jpg
+*.png
+*.ico
+*.icns
+*.manifest
+*.rc
+Cargo.lock
+*.zip
+*.dmg
+*.exe
+# 排除备份和临时文件
+*.bak
+*.tmp
+.DS_Store
+视频压缩_V4_发布版/

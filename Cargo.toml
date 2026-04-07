@@ -1,0 +1,64 @@
+[package]
+name = "fast-video-compress-rs-v2"
+version = "0.4.0"
+edition = "2021"
+authors = ["星 TAP 实验室"]
+description = "星TAP 极简视频压缩 V4 - 优化升级 Mac 版"
+default-run = "fast-video-compress-gui"
+
+[package.metadata.bundle]
+name = "星TAP视频压缩V4"
+identifier = "com.xtap.video-compress-v4"
+icon = ["视频压缩图标.icns"]
+category = "Video"
+short_description = "极简高效的视频压缩工具 - Mac 优化版"
+long_description = """
+基于 Rust 和 FFmpeg 开发的极简视频压缩工具。
+支持 AV1/HEVC 编码、智能缩放、硬件加速、批量处理。
+提供 GUI 和 CLI 双接口，支持 JSON 输入输出，便于 AI 调用。
+Mac 优化：VideoToolbox 硬件加速、路径自愈、内存优化。
+"""
+
+[dependencies]
+tokio = { version = "1.0", features = ["full"] }
+clap = { version = "4.6", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+walkdir = "2.3"
+anyhow = "1.0"
+indicatif = "0.17"
+futures = "0.3"
+eframe = "0.28"
+rfd = "0.15"
+confy = "0.6"
+image = "0.25"
+rayon = "1.11"
+num_cpus = "1.16"
+dirs = "5.0"
+sysinfo = "0.30"
+once_cell = "1.19"
+opener = "0.6"
+which = "4.4"
+log = "0.4"
+simplelog = "0.12"
+crossbeam-channel = "0.5"
+toml = "0.8"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = 'abort'
+strip = true
+overflow-checks = false
+
+[[bin]]
+name = "fast-video-compress-gui"
+path = "src/main.rs"
+
+[[bin]]
+name = "fast-video-compress-cli"
+path = "src/cli.rs"
+
+[build-dependencies]
+embed-resource = "2.4"
